@@ -1,5 +1,5 @@
 <!doctype html>
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=oDADfrfk1JVWL6oM2yXE51XLiAk0aT0hLgbjkzcwcVlyCdbo77tKuTxJgek735R-KSA0pM731lRX-Q4c357pDSyJVJweFSkyssTMDvR96oXEQlsn5y71h5-KPDe8-W5CS-s3l_zWd8vmq9UgZQwlq3tOzuURVr_qhQTEbfJUUE0KQRaWc1zfjB5HyPRKQiE7dW4aujULWXmj5YyrfFUSvKPEkaud6FajYib7SHrmmQ1RS7ykLw8gCrTxQQnN_7ksBPdKI7a9AnX-LpfGGEr0lHF4PH9M7EpTEdLBuHV0mKtWBBNrvZUtp5hYHKoR19e8" charset="UTF-8"></script><!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="ru">
 <head>
@@ -45,6 +45,37 @@
 .language-switch a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .nav{flex-wrap:wrap}.nav nav{gap:12px 22px}
 @media(max-width:670px){.nav{padding:14px 0}.nav nav{order:3;flex-basis:100%}.nav>.language-switch{margin-left:auto}}
+
+    /* Contact and centered mobile navigation — last rules take priority */
+    .contact-link{display:inline-flex;align-items:center;gap:8px;color:#a7eff0;text-decoration:none;font-weight:650;overflow-wrap:anywhere}
+    .contact-link:hover{text-decoration:underline;color:#fff}
+    .contact-link:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+    @media(max-width:900px){
+      .nav nav{justify-content:center;align-items:stretch;width:100%;text-align:center}
+      .nav nav a{display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:42px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#17233b;line-height:1.35}
+      .foot{align-items:center;justify-content:center;text-align:center}
+      .foot .language-switch{margin-left:0}
+    }
+    @media(max-width:550px){
+      .nav nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .nav nav a{min-width:0;overflow-wrap:anywhere}
+    }
+
+
+    /* Final footer: contact stays directly under the copyright, not squeezed between columns. */
+    .foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;text-align:left}
+    .footer-info{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-width:0;flex:1 1 300px}
+    .footer-credit{color:#e7ebf8;font-size:14px}
+    .footer-info .contact-link{display:inline-flex;align-items:center;gap:8px;min-width:0;max-width:100%;font-size:15px;color:#8de7e8;text-decoration:none;overflow-wrap:anywhere}
+    .footer-info .contact-link:hover{text-decoration:underline;color:#fff}
+    .footer-note{color:var(--muted);font-size:12px;line-height:1.5}
+    footer .language-switch,.foot .language-switch{margin-left:0;align-self:center}
+    @media(max-width:700px){
+      .foot{flex-direction:column;align-items:flex-start;justify-content:flex-start;text-align:left;gap:18px}
+      .footer-info{flex:initial;width:100%;align-items:flex-start}
+      footer .language-switch,.foot .language-switch{align-self:flex-start;margin-left:0}
+    }
+
 </style>
 <meta content="e0UbeZf7B4qU2CIjvh71Cyk9bCW309wK1Eplu2JBJEg" name="google-site-verification"/><link href="https://pre-vacuum.github.io/ru/" rel="canonical"/><link href="https://pre-vacuum.github.io/" hreflang="en" rel="alternate"/><link href="https://pre-vacuum.github.io/ru/" hreflang="ru" rel="alternate"/><link href="https://pre-vacuum.github.io/" hreflang="x-default" rel="alternate"/></head>
 <body>
@@ -55,6 +86,6 @@
 <section id="program"><div class="wrap"><div class="eyebrow">02 / Логика исследования</div><h2 class="section-title">От структуры к проверяемой динамике</h2><p class="section-lead">Каждый этап должен следовать из явно сформулированных предпосылок. Вывод следующего этапа не заменяется красивой аналогией или подбором параметров.</p><div class="steps"><div class="step"><b>01 — Структура</b><p>Определить допустимые состояния и локальные различия.</p></div><div class="step"><b>02 — Истории</b><p>Задать закон реальных переходов, событий и внутреннего порядка.</p></div><div class="step"><b>03 — Вакуум</b><p>Получить устойчивое состояние и оператор линейного отклика.</p></div><div class="step"><b>04 — Физика</b><p>Проверить волны, общую причинность и возможные материальные возбуждения.</p></div></div><div class="notice"><strong>Статус:</strong><span> это исследовательская программа, а не доказанная теория происхождения Вселенной. Математическая непротиворечивость модели ещё не означает её физическую реализуемость или экспериментальное подтверждение.</span></div></div></section>
 <section id="criteria"><div class="wrap"><div class="eyebrow">03 / Проверка физики</div><h2 class="section-title">Что кандидат на родительский закон обязан выдержать</h2><p class="section-lead">Вместо подгонки отдельных скоростей и свойств мы ищем их совместное происхождение из одной структуры и её оператора отклика.</p><div class="grid"><article class="card"><div class="num">КРИТЕРИЙ A</div><h3>Устойчивый вакуум</h3><p>Проверяем устойчивость состояния относительно допустимых возмущений, отсутствие нефизических неустойчивых мод.</p></article><article class="card"><div class="num">КРИТЕРИЙ B</div><h3>Волны и энергия</h3><p>Проверяем динамический перенос энергии и появление двух поперечных безмассовых мод в подходящем пределе.</p></article><article class="card"><div class="num">КРИТЕРИЙ C</div><h3>Единый причинный конус</h3><p>Разные сектора должны наследовать одну причинную геометрию из общего закона, а не получать совпадающие скорости ручной настройкой.</p></article></div><div class="actions"><a class="btn primary" href="https://github.com/pre-vacuum/pre-vacuum.github.io">Исходные материалы и развитие сайта ↗</a></div></div></section>
 </main>
-<footer><div class="wrap foot"><span>© 2026 Павел Дубов · Pre-Vacuum</span><span>Открытые вопросы отделены от установленных физических фактов.</span><div aria-label="Language / Язык" class="language-switch" role="group"><a href="/" hreflang="en" lang="en" title="English">🇬🇧 EN</a><a aria-current="page" href="/ru/" hreflang="ru" lang="ru" title="Русский">🇷🇺 RU</a></div></div></footer>
+<footer><div class="wrap foot"><div class="footer-info"><span class="footer-credit">© 2026 Павел Дубов · Pre-Vacuum</span><a class="contact-link" href="mailto:paveldubovmy@gmail.com" aria-label="Написать Павлу Дубову">✉ Связаться: paveldubovmy@gmail.com</a><span class="footer-note">Открытые вопросы отделены от установленных физических фактов.</span></div><div aria-label="Language / Язык" class="language-switch" role="group"><a href="/" hreflang="en" lang="en" title="English">🇬🇧 EN</a><a aria-current="page" href="/ru/" hreflang="ru" lang="ru" title="Русский">🇷🇺 RU</a></div></div></footer>
 </body>
 </html>
