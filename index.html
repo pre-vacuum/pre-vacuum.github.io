@@ -45,6 +45,37 @@
 .language-switch a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .nav{flex-wrap:wrap}.nav nav{gap:12px 22px}
 @media(max-width:670px){.nav{padding:14px 0}.nav nav{order:3;flex-basis:100%}.nav>.language-switch{margin-left:auto}}
+
+    /* Contact and centered mobile navigation — last rules take priority */
+    .contact-link{display:inline-flex;align-items:center;gap:8px;color:#a7eff0;text-decoration:none;font-weight:650;overflow-wrap:anywhere}
+    .contact-link:hover{text-decoration:underline;color:#fff}
+    .contact-link:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+    @media(max-width:900px){
+      .nav nav{justify-content:center;align-items:stretch;width:100%;text-align:center}
+      .nav nav a{display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:42px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#17233b;line-height:1.35}
+      .foot{align-items:center;justify-content:center;text-align:center}
+      .foot .language-switch{margin-left:0}
+    }
+    @media(max-width:550px){
+      .nav nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .nav nav a{min-width:0;overflow-wrap:anywhere}
+    }
+
+
+    /* Final footer: contact stays directly under the copyright, not squeezed between columns. */
+    .foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;text-align:left}
+    .footer-info{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-width:0;flex:1 1 300px}
+    .footer-credit{color:#e7ebf8;font-size:14px}
+    .footer-info .contact-link{display:inline-flex;align-items:center;gap:8px;min-width:0;max-width:100%;font-size:15px;color:#8de7e8;text-decoration:none;overflow-wrap:anywhere}
+    .footer-info .contact-link:hover{text-decoration:underline;color:#fff}
+    .footer-note{color:var(--muted);font-size:12px;line-height:1.5}
+    footer .language-switch,.foot .language-switch{margin-left:0;align-self:center}
+    @media(max-width:700px){
+      .foot{flex-direction:column;align-items:flex-start;justify-content:flex-start;text-align:left;gap:18px}
+      .footer-info{flex:initial;width:100%;align-items:flex-start}
+      footer .language-switch,.foot .language-switch{align-self:flex-start;margin-left:0}
+    }
+
 </style>
 <meta content="e0UbeZf7B4qU2CIjvh71Cyk9bCW309wK1Eplu2JBJEg" name="google-site-verification"/><link href="https://pre-vacuum.github.io/" rel="canonical"/><link href="https://pre-vacuum.github.io/" hreflang="en" rel="alternate"/><link href="https://pre-vacuum.github.io/ru/" hreflang="ru" rel="alternate"/><link href="https://pre-vacuum.github.io/" hreflang="x-default" rel="alternate"/></head>
 <body>
@@ -55,6 +86,6 @@
 <section id="program"><div class="wrap"><div class="eyebrow">02 / Research framework</div><h2 class="section-title">From structure to testable dynamics</h2><p class="section-lead">Each stage must follow from explicitly stated assumptions. An appealing analogy or parameter tuning cannot substitute for deriving the next stage.</p><div class="steps"><div class="step"><b>01 — Structure</b><p>Define admissible states and local distinctions.</p></div><div class="step"><b>02 — Histories</b><p>Specify a law for actual transitions, events and internal ordering.</p></div><div class="step"><b>03 — Vacuum</b><p>Derive a stable state and an operator of linear response.</p></div><div class="step"><b>04 — Physics</b><p>Test waves, shared causality and possible matter excitations.</p></div></div><div class="notice"><strong>Status:</strong><span> This is a research program, not a proven theory of the origin of the Universe. Mathematical consistency alone does not establish physical realizability or experimental confirmation.</span></div></div></section>
 <section id="criteria"><div class="wrap"><div class="eyebrow">03 / Physical validation</div><h2 class="section-title">What a candidate underlying law must satisfy</h2><p class="section-lead">Rather than tuning separate speeds and properties, we seek their joint origin in one structure and its response operator.</p><div class="grid"><article class="card"><div class="num">CRITERION A</div><h3>Stable vacuum</h3><p>Test the state under admissible perturbations and check for unphysical unstable modes.</p></article><article class="card"><div class="num">CRITERION B</div><h3>Waves and energy</h3><p>Test dynamical energy transport and the appearance of two transverse massless modes in an appropriate limit.</p></article><article class="card"><div class="num">CRITERION C</div><h3>A common causal cone</h3><p>Different sectors should inherit a common causal geometry from the same law, rather than acquire matching speeds through manual adjustment.</p></article></div><div class="actions"><a class="btn primary" href="https://github.com/pre-vacuum/pre-vacuum.github.io">Source materials and site development ↗</a></div></div></section>
 </main>
-<footer><div class="wrap foot"><span>© 2026 Pavel Dubov · Pre-Vacuum</span><span>Open questions are distinguished from established physical facts.</span><div aria-label="Language / Язык" class="language-switch" role="group"><a aria-current="page" href="/" hreflang="en" lang="en" title="English">🇬🇧 EN</a><a href="/ru/" hreflang="ru" lang="ru" title="Русский">🇷🇺 RU</a></div></div></footer>
+<footer><div class="wrap foot"><div class="footer-info"><span class="footer-credit">© 2026 Pavel Dubov · Pre-Vacuum</span><a class="contact-link" href="mailto:paveldubovmy@gmail.com" aria-label="Email Pavel Dubov">✉ Contact: paveldubovmy@gmail.com</a><span class="footer-note">Open questions are distinguished from established physical facts.</span></div><div aria-label="Language / Язык" class="language-switch" role="group"><a aria-current="page" href="/" hreflang="en" lang="en" title="English">🇬🇧 EN</a><a href="/ru/" hreflang="ru" lang="ru" title="Русский">🇷🇺 RU</a></div></div></footer>
 </body>
 </html>
