@@ -1,0 +1,12 @@
+title: "Pre-Vacuum Research Atlas"
+description: "Research atlas by Pavel Dubov: pre-vacuum, vacuum dynamics, nucleon structure, particles, universe geometry and mathematics."
+url: "https://pre-vacuum.github.io"
+baseurl: ""
+author:
+  name: "Pavel Dubov"
+  email: "paveldubovmy@gmail.com"
+timezone: "Europe/Vienna"
+markdown: kramdown
+permalink: pretty
+exclude:
+  - README.md
