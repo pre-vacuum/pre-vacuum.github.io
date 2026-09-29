@@ -1,7 +1,95 @@
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KKDCS5BT');</script>
-<!-- End Google Tag Manager -->
+<!-- Privacy-first Google consent bootstrap.
+     GTM is NOT loaded until analytics consent is granted. -->
+<script>
+(function(w,d){
+  'use strict';
+
+  var KEY = 'pv_analytics_consent_v1';
+  var GTM_ID = 'GTM-KKDCS5BT';
+
+  w.dataLayer = w.dataLayer || [];
+  w.gtag = w.gtag || function(){ w.dataLayer.push(arguments); };
+
+  function readChoice(){
+    try { return localStorage.getItem(KEY); } catch(e) { return null; }
+  }
+
+  function saveChoice(value){
+    try { localStorage.setItem(KEY, value); } catch(e) {}
+  }
+
+  function clearAnalyticsCookies(){
+    try {
+      d.cookie.split(';').forEach(function(cookie){
+        var name = cookie.split('=')[0].trim();
+        if (name === '_ga' || name.indexOf('_ga_') === 0) {
+          d.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+          d.cookie = name + '=; Max-Age=0; path=/; domain=' + location.hostname + '; SameSite=Lax';
+        }
+      });
+    } catch(e) {}
+  }
+
+  function loadGTM(){
+    if (w.__pvGtmLoaded) return;
+    w.__pvGtmLoaded = true;
+    w.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var first = d.getElementsByTagName('script')[0];
+    var script = d.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM_ID);
+    first.parentNode.insertBefore(script, first);
+  }
+
+  var choice = readChoice();
+
+  w.gtag('consent', 'default', {
+    analytics_storage: choice === 'granted' ? 'granted' : 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+
+  if (choice === 'granted') loadGTM();
+
+  w.PVConsent = {
+    key: KEY,
+    get: readChoice,
+    grant: function(){
+      saveChoice('granted');
+      w.gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      loadGTM();
+      w.dataLayer.push({event:'pv_consent_update', pv_analytics_consent:'granted'});
+    },
+    deny: function(){
+      saveChoice('denied');
+      w.gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      clearAnalyticsCookies();
+      w.dataLayer.push({event:'pv_consent_update', pv_analytics_consent:'denied'});
+    },
+    reset: function(){
+      try { localStorage.removeItem(KEY); } catch(e) {}
+      w.gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      clearAnalyticsCookies();
+    }
+  };
+})(window,document);
+</script>
