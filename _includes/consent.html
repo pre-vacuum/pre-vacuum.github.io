@@ -1,0 +1,65 @@
+{% if page.lang == "ru" %}
+  {% assign consent_title = "Настройки конфиденциальности" %}
+  {% assign consent_text = "Мы используем только необходимые технологии хранения. Google Analytics включается только с вашего согласия и помогает понять, как используется сайт." %}
+  {% assign accept_label = "Принять аналитику" %}
+  {% assign reject_label = "Отклонить" %}
+  {% assign settings_label = "Настройки" %}
+  {% assign save_label = "Сохранить" %}
+  {% assign back_label = "Назад" %}
+  {% assign necessary_title = "Необходимые" %}
+  {% assign necessary_text = "Всегда активны. Нужны для работы сайта и сохранения вашего выбора конфиденциальности." %}
+  {% assign analytics_title = "Аналитика" %}
+  {% assign analytics_text = "Опционально. Google Analytics 4 через Google Tag Manager. Рекламное хранение и персонализация отключены." %}
+  {% assign privacy_label = "Политика конфиденциальности" %}
+  {% assign cookies_label = "Cookie Policy" %}
+  {% assign privacy_url = "/ru/privacy/" %}
+  {% assign cookies_url = "/ru/cookies/" %}
+{% else %}
+  {% assign consent_title = "Privacy settings" %}
+  {% assign consent_text = "We use only necessary storage by default. Google Analytics is enabled only with your consent and helps us understand how the site is used." %}
+  {% assign accept_label = "Accept analytics" %}
+  {% assign reject_label = "Reject" %}
+  {% assign settings_label = "Settings" %}
+  {% assign save_label = "Save choice" %}
+  {% assign back_label = "Back" %}
+  {% assign necessary_title = "Necessary" %}
+  {% assign necessary_text = "Always active. Required for site operation and for remembering your privacy choice." %}
+  {% assign analytics_title = "Analytics" %}
+  {% assign analytics_text = "Optional. Google Analytics 4 via Google Tag Manager. Advertising storage and personalization remain disabled." %}
+  {% assign privacy_label = "Privacy Policy" %}
+  {% assign cookies_label = "Cookie Policy" %}
+  {% assign privacy_url = "/privacy/" %}
+  {% assign cookies_url = "/cookies/" %}
+{% endif %}
+
+<div id="privacy-consent" class="consent-banner" role="dialog" aria-modal="false" aria-labelledby="consent-title" hidden>
+  <div class="consent-card">
+    <div class="consent-main" data-consent-view="main">
+      <div class="consent-copy">
+        <strong id="consent-title">{{ consent_title }}</strong>
+        <p>{{ consent_text }}</p>
+        <div class="consent-links"><a href="{{ privacy_url }}">{{ privacy_label }}</a><span>·</span><a href="{{ cookies_url }}">{{ cookies_label }}</a></div>
+      </div>
+      <div class="consent-actions">
+        <button type="button" class="btn primary" data-consent-accept>{{ accept_label }}</button>
+        <button type="button" class="btn" data-consent-reject>{{ reject_label }}</button>
+        <button type="button" class="consent-link-button" data-consent-settings>{{ settings_label }}</button>
+      </div>
+    </div>
+
+    <div class="consent-settings" data-consent-view="settings" hidden>
+      <div class="consent-setting-row">
+        <div><strong>{{ necessary_title }}</strong><p>{{ necessary_text }}</p></div>
+        <span class="consent-always">ON</span>
+      </div>
+      <label class="consent-setting-row" for="consent-analytics-toggle">
+        <div><strong>{{ analytics_title }}</strong><p>{{ analytics_text }}</p></div>
+        <input id="consent-analytics-toggle" type="checkbox">
+      </label>
+      <div class="consent-settings-actions">
+        <button type="button" class="btn primary" data-consent-save>{{ save_label }}</button>
+        <button type="button" class="consent-link-button" data-consent-back>{{ back_label }}</button>
+      </div>
+    </div>
+  </div>
+</div>
