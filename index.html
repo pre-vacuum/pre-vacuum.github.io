@@ -1,112 +1,28 @@
 <!doctype html>
-<!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="#0a0e1d" name="theme-color"/>
-<meta content="Pre-Vacuum: research into the possible origins of physical events, vacuum, spacetime and matter. Pavel Dubov." name="description"/>
-<title>Pre-Vacuum — From Distinction to the Physical World</title>
-<style>
-    :root{color-scheme:dark;--bg:#0a0e1d;--ink:#eef2ff;--muted:#b4bfd9;--line:#ffffff1b;--purple:#aa92ff;--cyan:#8de7e8;--card:#111b31}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}
-    a{color:inherit}a:focus-visible{outline:2px solid var(--cyan);outline-offset:5px;border-radius:4px}
-    .wrap{max-width:1120px;margin:auto;padding:0 28px}header{position:relative;z-index:3;border-bottom:1px solid var(--line);background:#0a0e1de0;backdrop-filter:blur(14px)}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px}.brand{font-size:16px;font-weight:850;letter-spacing:.1em;text-decoration:none}.brand span{color:var(--cyan)}
-    nav{display:flex;gap:24px;flex-wrap:wrap}nav a{text-decoration:none;color:var(--muted);font-size:14px}nav a:hover{color:white}
-    .hero{isolation:isolate;position:relative;overflow:hidden;padding:110px 0 110px;background:radial-gradient(ellipse 55% 65% at 78% 45%,#543e9a6e,transparent 80%),radial-gradient(ellipse 42% 60% at 90% 2%,#16718b4a,transparent 78%)}
-    .hero:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.6;background-image:radial-gradient(1px 1px at 15% 25%,#fff,transparent),radial-gradient(1px 1px at 65% 35%,#fff,transparent),radial-gradient(2px 2px at 85% 80%,#fff,transparent),radial-gradient(1px 1px at 35% 75%,#fff,transparent);background-size:215px 175px}
-    .hero-inner{display:grid;grid-template-columns:1.22fr .78fr;align-items:center;gap:55px}.eyebrow{text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:.22em;color:var(--cyan)}
-    h1{font-size:clamp(43px,6vw,79px);letter-spacing:-.055em;line-height:1.05;margin:18px 0 27px}h1 em{font-style:normal;background:linear-gradient(95deg,#c4acff,#7de3eb);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .lead{max-width:640px;font-size:clamp(18px,2.1vw,22px);color:#c7d0ea}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}.btn{display:inline-block;padding:12px 19px;border-radius:12px;text-decoration:none;font-weight:700;font-size:14px;border:1px solid #ffffff3d}.btn.primary{background:linear-gradient(125deg,#9471f9,#568bca);border-color:transparent;color:white}.btn:hover{filter:brightness(1.15)}
-    .orb{width:min(100%,370px);aspect-ratio:1;margin:auto;border-radius:50%;position:relative;background:radial-gradient(circle at 38% 33%,#a5e5f0 0%,#8275ce 12%,#392a6d 34%,#151b3e 58%,#070b1d 70%);box-shadow:0 0 55px #7c77ff35,0 0 115px #578cbd2a,inset -23px -22px 55px #040714;animation:float 8s ease-in-out infinite}.orb:before,.orb:after{content:"";position:absolute;inset:-12%;border:1px solid #9b9bea61;border-radius:50%;transform:rotate(-23deg) scaleY(.4)}.orb:after{inset:-20%;transform:rotate(64deg) scaleY(.5);border-color:#80e2e85e}@keyframes float{50%{transform:translateY(-10px)}}
-    section{padding:90px 0;border-top:1px solid var(--line)}.section-title{font-size:clamp(28px,4vw,44px);line-height:1.15;letter-spacing:-.03em;margin:12px 0 15px}.section-lead{max-width:770px;color:var(--muted);margin:0 0 34px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{padding:28px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#17233b,#101729)}.card .num{color:var(--cyan);font-size:13px;letter-spacing:.13em;font-weight:800}.card h3{font-size:19px;line-height:1.3;margin:16px 0 10px}.card p{color:var(--muted);font-size:15px;margin:0}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:step}.step{padding:25px 20px;background:#141c31;border-top:2px solid #9b82f7;border-radius:0 0 14px 14px}.step b{display:block;font-size:14px;color:var(--cyan);margin-bottom:12px}.step p{margin:0;color:var(--muted);font-size:14px}.notice{margin-top:28px;padding:21px 24px;border:1px solid #83dccb5c;background:#0e363956;border-radius:14px;color:#d7f5f0}.notice strong{color:#9cebe4}footer{padding:32px 0;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}.foot{display:flex;gap:18px;justify-content:space-between;flex-wrap:wrap}
-    @media(max-width:850px){.hero-inner{grid-template-columns:1fr}.orb{width:230px;margin:18px auto 0}.grid{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}.hero{padding:74px 0 76px}}
-    @media(max-width:550px){.wrap{padding:0 18px}.nav{align-items:flex-start;flex-direction:column;padding:18px 0}.steps{grid-template-columns:1fr}section{padding:65px 0}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.orb{animation:none}}
-  
-    /* One-click language controls, in both the header and the footer. */
-    .language-switch{display:inline-flex;align-items:center;gap:3px;padding:5px 6px;border:1px solid #a9b8db4f;background:#18233b;border-radius:999px;box-shadow:inset 0 1px 0 #ffffff14;flex-shrink:0}
-    .language-icon{display:grid;place-items:center;color:var(--cyan);font-size:20px;width:28px;height:28px;line-height:1}
-    .lang-btn{appearance:none;border:0;border-radius:999px;background:transparent;color:#d0d9ee;font:800 12px/1 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.08em;min-width:39px;min-height:34px;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
-    .lang-btn:hover{background:#ffffff20;color:#fff}
-    .lang-btn.is-active{background:linear-gradient(135deg,#9c89f7,#64bcc8);color:#081224;box-shadow:0 2px 12px #7cc4de40}
-    .lang-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
-    .language-divider{height:17px;width:1px;background:#c4d4f244}
-    footer .language-switch{margin-left:auto}
-    @media(max-width:900px){.nav{flex-wrap:wrap;padding:12px 0}.nav nav{order:3;flex-basis:100%;gap:12px 22px}.nav>.language-switch{margin-left:auto}}
-    @media(max-width:550px){.nav{flex-direction:row;align-items:center}.nav nav{justify-content:flex-start}.foot{align-items:center}}
-
-/* Two standalone language editions, same navigation in header and footer */
-.language-switch{display:inline-flex;align-items:center;gap:4px;padding:5px;border:1px solid #a9b8db4f;background:#18233b;border-radius:999px;flex-shrink:0}
-.language-switch a{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:36px;padding:6px 12px;border-radius:999px;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.04em;color:#d0d9ee}
-.language-switch a:hover{background:#ffffff20;color:#fff}.language-switch a[aria-current="page"]{background:linear-gradient(135deg,#9c89f7,#64bcc8);color:#081224;box-shadow:0 2px 12px #7cc4de40}
-.language-switch a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
-.nav{flex-wrap:wrap}.nav nav{gap:12px 22px}
-@media(max-width:670px){.nav{padding:14px 0}.nav nav{order:3;flex-basis:100%}.nav>.language-switch{margin-left:auto}}
-
-    /* Contact and centered mobile navigation — last rules take priority */
-    .contact-link{display:inline-flex;align-items:center;gap:8px;color:#a7eff0;text-decoration:none;font-weight:650;overflow-wrap:anywhere}
-    .contact-link:hover{text-decoration:underline;color:#fff}
-    .contact-link:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
-    @media(max-width:900px){
-      .nav nav{justify-content:center;align-items:stretch;width:100%;text-align:center}
-      .nav nav a{display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:42px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#17233b;line-height:1.35}
-      .foot{align-items:center;justify-content:center;text-align:center}
-      .foot .language-switch{margin-left:0}
-    }
-    @media(max-width:550px){
-      .nav nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-      .nav nav a{min-width:0;overflow-wrap:anywhere}
-    }
-
-
-    /* Final footer: contact stays directly under the copyright, not squeezed between columns. */
-    .foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;text-align:left}
-    .footer-info{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-width:0;flex:1 1 300px}
-    .footer-credit{color:#e7ebf8;font-size:14px}
-    .footer-info .contact-link{display:inline-flex;align-items:center;gap:8px;min-width:0;max-width:100%;font-size:15px;color:#8de7e8;text-decoration:none;overflow-wrap:anywhere}
-    .footer-info .contact-link:hover{text-decoration:underline;color:#fff}
-    .footer-note{color:var(--muted);font-size:12px;line-height:1.5}
-    footer .language-switch,.foot .language-switch{margin-left:0;align-self:center}
-    @media(max-width:700px){
-      .foot{flex-direction:column;align-items:flex-start;justify-content:flex-start;text-align:left;gap:18px}
-      .footer-info{flex:initial;width:100%;align-items:flex-start}
-      footer .language-switch,.foot .language-switch{align-self:flex-start;margin-left:0}
-    }
-
-</style>
-<meta content="e0UbeZf7B4qU2CIjvh71Cyk9bCW309wK1Eplu2JBJEg" name="google-site-verification"/><link href="https://pre-vacuum.github.io/" rel="canonical"/><link href="https://pre-vacuum.github.io/" hreflang="en" rel="alternate"/><link href="https://pre-vacuum.github.io/ru/" hreflang="ru" rel="alternate"/><link href="https://pre-vacuum.github.io/" hreflang="x-default" rel="alternate"/></head>
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<link rel="manifest" href="/site.webmanifest">
-
-<meta name="theme-color" content="#0a0e1d">
-    
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KKDCS5BT');</script>
-<!-- End Google Tag Manager -->
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKDCS5BT"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <body>
-<header><div class="wrap nav"><a class="brand" href="#top">PRE<span>·</span>VACUUM</a><nav aria-label="Main menu"><a href="#idea">Concept</a><a href="#program">Research program</a><a href="#criteria">Validation criteria</a><a href="https://github.com/pre-vacuum/pre-vacuum.github.io">GitHub ↗</a></nav><div aria-label="Language / Язык" class="language-switch" role="group"><a aria-current="page" href="/" hreflang="en" lang="en" title="English">🇬🇧 EN</a><a href="/ru/" hreflang="ru" lang="ru" title="Русский">🇷🇺 RU</a></div></div></header>
-<main id="top">
-<div class="hero"><div class="wrap hero-inner"><div><div class="eyebrow">Research project · Pavel Dubov</div><h1><span>How does the </span><em>physical world emerge?</em></h1><p class="lead">From pre-vacuum and local distinctions to events, a stable vacuum, propagating waves and matter. We investigate which minimal laws could genuinely lead to observable physics.</p><div class="actions"><a class="btn primary" href="#program">Research program ↓</a><a class="btn" href="#criteria">What remains to be proven</a></div></div><div aria-label="Abstract luminous sphere symbolizing the physical vacuum under investigation" class="orb" role="img"></div></div></div>
-<section id="idea"><div class="wrap"><div class="eyebrow">01 / The starting question</div><h2 class="section-title">Do not postulate a ready-made world — investigate its emergence</h2><p class="section-lead">We examine possible mathematical structures from which local events and a physical vacuum might emerge. Symmetry and consistency of possible states alone do not demonstrate that events actually occur or that physical dynamics exist.</p><div class="grid"><article class="card"><div class="num">PRE-VACUUM</div><h3>Before familiar physical quantities</h3><p>What minimal relations and rules are admissible without presupposing space, time or particles?</p></article><article class="card"><div class="num">LOCAL DISTINCTION</div><h3>From possibility to event</h3><p>What distinguishes an allowed change from an actually realized transition? How might causal order arise?</p></article><article class="card"><div class="num">PHYSICAL VACUUM</div><h3>Stability and excitations</h3><p>Can a single dynamical law yield a stable ground state and propagating excitations?</p></article></div></div></section>
-<section id="program"><div class="wrap"><div class="eyebrow">02 / Research framework</div><h2 class="section-title">From structure to testable dynamics</h2><p class="section-lead">Each stage must follow from explicitly stated assumptions. An appealing analogy or parameter tuning cannot substitute for deriving the next stage.</p><div class="steps"><div class="step"><b>01 — Structure</b><p>Define admissible states and local distinctions.</p></div><div class="step"><b>02 — Histories</b><p>Specify a law for actual transitions, events and internal ordering.</p></div><div class="step"><b>03 — Vacuum</b><p>Derive a stable state and an operator of linear response.</p></div><div class="step"><b>04 — Physics</b><p>Test waves, shared causality and possible matter excitations.</p></div></div><div class="notice"><strong>Status:</strong><span> This is a research program, not a proven theory of the origin of the Universe. Mathematical consistency alone does not establish physical realizability or experimental confirmation.</span></div></div></section>
-<section id="criteria"><div class="wrap"><div class="eyebrow">03 / Physical validation</div><h2 class="section-title">What a candidate underlying law must satisfy</h2><p class="section-lead">Rather than tuning separate speeds and properties, we seek their joint origin in one structure and its response operator.</p><div class="grid"><article class="card"><div class="num">CRITERION A</div><h3>Stable vacuum</h3><p>Test the state under admissible perturbations and check for unphysical unstable modes.</p></article><article class="card"><div class="num">CRITERION B</div><h3>Waves and energy</h3><p>Test dynamical energy transport and the appearance of two transverse massless modes in an appropriate limit.</p></article><article class="card"><div class="num">CRITERION C</div><h3>A common causal cone</h3><p>Different sectors should inherit a common causal geometry from the same law, rather than acquire matching speeds through manual adjustment.</p></article></div><div class="actions"><a class="btn primary" href="https://github.com/pre-vacuum/pre-vacuum.github.io">Source materials and site development ↗</a></div></div></section>
-</main>
-<footer><div class="wrap foot"><div class="footer-info"><span class="footer-credit">© 2026 Pavel Dubov · Pre-Vacuum</span><a class="contact-link" href="mailto:paveldubovmy@gmail.com" aria-label="Email Pavel Dubov">✉ Contact: paveldubovmy@gmail.com</a><span class="footer-note">Open questions are distinguished from established physical facts.</span></div><div aria-label="Language / Язык" class="language-switch" role="group"><a aria-current="page" href="/" hreflang="en" lang="en" title="English">🇬🇧 EN</a><a href="/ru/" hreflang="ru" lang="ru" title="Русский">🇷🇺 RU</a></div></div></footer>
-</body>
-</html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d1a">
+<title>Pre-Vacuum Research Atlas</title><meta name="description" content="Research atlas by Pavel Dubov: pre-vacuum, vacuum dynamics, nucleon structure, particles, universe compactness and mathematics.">
+<meta name="google-site-verification" content="e0UbeZf7B4qU2CIjvh71Cyk9bCW309wK1Eplu2JBJEg">
+<link rel="canonical" href="https://pre-vacuum.github.io/"><link rel="alternate" hreflang="en" href="https://pre-vacuum.github.io/"><link rel="alternate" hreflang="ru" href="https://pre-vacuum.github.io/ru/"><link rel="alternate" hreflang="x-default" href="https://pre-vacuum.github.io/">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/assets/site.css"><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KKDCS5BT');</script><!-- End Google Tag Manager -->
+</head>
+<body><!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKDCS5BT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
+<header class="site-header"><div class="wrap navbar"><a class="brand" href="/">PRE<i>·</i>VACUUM</a><button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open menu">☰</button><nav class="main-nav" aria-label="Main navigation"><a href="/#research">Research</a><a href="/results/">Results</a><a href="/papers/">Papers</a><a href="/roadmap/">Roadmap</a><a href="/about/">About</a><a href="https://github.com/pre-vacuum/pre-vacuum.github.io">GitHub ↗</a></nav><div class="lang"><a href="/" class="active">EN</a><a href="/ru/" class="">RU</a></div></div></header>
+<main><section class="hero"><div class="wrap hero-grid"><div><div class="kicker">Pre-Vacuum · Research Atlas</div><h1>From <span class="gradient">pre-vacuum</span> to physical matter</h1><p class="lead">A public map of an active research program: minimal pre-geometric laws, vacuum dynamics, baryons, particles, global geometry and the mathematics that supports or constrains them.</p><div class="actions"><span class="status active">RESEARCH PROGRAM</span><a class="btn" href="/results/">Evidence & status</a></div></div><div class="orb" aria-hidden="true"></div></div></section>
+<section id="research"><div class="wrap"><div class="section-head"><div class="kicker">Research atlas</div><h2>Six research directions, one explicit chain of questions</h2><p>The site is organized as a research map rather than as a single “theory of everything” claim. Each direction records what is computed, what is conjectural and what failed.</p></div>
+<div class="cards">
+<article class="card"><span class="status active">ACTIVE</span><h3>Pre-Vacuum</h3><p>Minimal pre-geometric rules, primary distinction and the origin of event structure.</p><a class="more" href="/prevacuum/">Open direction →</a></article><article class="card"><span class="status active">ACTIVE</span><h3>Vacuum</h3><p>Dynamics after the first distinction: defects, waves, vacuum structure and Lorentz constraints.</p><a class="more" href="/vacuum/">Open direction →</a></article><article class="card"><span class="status active">ACTIVE</span><h3>Nucleon</h3><p>Near-BPS/HLS baryon program: topology, EMT/D-term, currents and the N–Δ sector.</p><a class="more" href="/nucleon/">Open direction →</a></article><article class="card"><span class="status open">OPEN</span><h3>Particles</h3><p>Electron, leptons and generation structure. Several branches are deliberately kept as OPEN or FAIL.</p><a class="more" href="/particles/">Open direction →</a></article><article class="card"><span class="status active">ACTIVE</span><h3>Universe</h3><p>Compactness, topology, curvature conditions and observational constraints on global geometry.</p><a class="more" href="/universe/">Open direction →</a></article><article class="card"><span class="status active">ARCHIVE + ACTIVE</span><h3>Mathematics</h3><p>Finite-index rigidity, wreath products and scale-invariance papers supporting the broader program.</p><a class="more" href="/mathematics/">Open direction →</a></article>
+</div></div></section>
+<section><div class="wrap"><div class="section-head"><div class="kicker">How to read this site</div><h2>Status is part of the result</h2><p>Every public claim should carry a visible research status. A numerical pass is not a theorem; an internally consistent model is not experimental evidence; a failed branch stays visible when it constrains the next move.</p></div>
+<div class="cards"><article class="card"><span class="status pass">NUMERICAL PASS</span><h3>Reproduced calculation</h3><p>A result that survives the stated numerical gates and refinements within a specified model.</p></article><article class="card"><span class="status open">OPEN</span><h3>Unresolved physics</h3><p>A target or mechanism not yet derived from the parent assumptions.</p></article><article class="card"><span class="status fail">FAIL / RETIRED</span><h3>Rejected route</h3><p>A branch that violated a gate, became non-novel, or no longer supports the physical interpretation.</p></article></div>
+<div class="actions"><a class="btn primary" href="/results/">Open evidence ledger →</a><a class="btn" href="/roadmap/">Open full roadmap</a></div></div></section>
+<section><div class="wrap"><div class="section-head"><div class="kicker">Current focus</div><h2>Where the program is moving now</h2></div><div class="map">
+<div class="map-row"><b>Primary defect</b><p>Turn localized structure formation from a model-dependent numerical result into a derivation from the pre-vacuum parent law.</p></div>
+<div class="map-row"><b>Vacuum dynamics</b><p>Keep only structures compatible with refinement, coarsening control and stringent Lorentz-invariance constraints.</p></div>
+<div class="map-row"><b>Nucleon passport</b><p>Close the remaining common-Hessian/operator gates and test zero-Δ-input predictions without fitting the target observables.</p></div>
+<div class="map-row"><b>Particles</b><p>Derive an electron and generation structure without hiding failed symmetry branches or importing free parameters.</p></div>
+</div></div></section></main>
+<footer class="site-footer"><div class="wrap footer-grid"><div class="footer-copy"><span>© 2026 Pavel Dubov · Pre-Vacuum</span><a class="contact" href="mailto:paveldubovmy@gmail.com">paveldubovmy@gmail.com</a><span>Hypotheses, numerical results and established statements are separated by status.</span></div><div class="lang"><a href="/" class="active">EN</a><a href="/ru/" class="">RU</a></div></div></footer>
+<script src="/assets/site.js"></script></body></html>
