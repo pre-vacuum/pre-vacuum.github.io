@@ -1,0 +1,2 @@
+
+(()=>{const b=document.querySelector('.menu-toggle');if(!b)return;const close=()=>{document.body.classList.remove('menu-open');b.setAttribute('aria-expanded','false')};b.addEventListener('click',()=>{const on=document.body.classList.toggle('menu-open');b.setAttribute('aria-expanded',String(on))});document.querySelectorAll('.main-nav a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});})();
