@@ -1,0 +1,28 @@
+{% if page.lang == "ru" %}
+  {% assign footer_note = "Гипотезы, численные результаты и доказанные утверждения разделены по статусу." %}
+  {% assign footer_papers = "/ru/papers/" %}
+  {% assign footer_results = "/ru/results/" %}
+  {% assign footer_roadmap = "/ru/roadmap/" %}
+{% else %}
+  {% assign footer_note = "Hypotheses, numerical results and established statements are separated by status." %}
+  {% assign footer_papers = "/papers/" %}
+  {% assign footer_results = "/results/" %}
+  {% assign footer_roadmap = "/roadmap/" %}
+{% endif %}
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-copy">
+      <span>© 2026 {% if page.lang == "ru" %}Павел Дубов{% else %}Pavel Dubov{% endif %} · Pre-Vacuum</span>
+      <a class="contact" href="mailto:paveldubovmy@gmail.com">paveldubovmy@gmail.com</a>
+      <span>{{ footer_note }}</span>
+      <span class="footer-links"><a href="{{ footer_results }}">Results</a> · <a href="{{ footer_papers }}">Papers</a> · <a href="{{ footer_roadmap }}">Roadmap</a> · <a href="https://github.com/pre-vacuum/pre-vacuum.github.io">GitHub</a></span>
+    </div>
+    <div class="lang">
+      {% if page.lang == "ru" %}
+        <a href="{{ page.alternate_url | default: '/' }}">EN</a><a href="{{ page.url }}" class="active">RU</a>
+      {% else %}
+        <a href="{{ page.url }}" class="active">EN</a><a href="{{ page.alternate_url | default: '/ru/' }}">RU</a>
+      {% endif %}
+    </div>
+  </div>
+</footer>
