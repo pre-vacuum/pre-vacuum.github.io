@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="{{ page.lang | default: 'en' }}">
+<head>
+  {% include head.html %}
+  {% include analytics.html %}
+</head>
+<body>
+  {% include analytics-body.html %}
+  {% include header.html %}
+  <main>
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script src="/assets/site.js"></script>
+</body>
+</html>
