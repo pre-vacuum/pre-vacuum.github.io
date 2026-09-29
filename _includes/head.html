@@ -1,0 +1,46 @@
+{% assign canonical_url = page.canonical | default: page.url | absolute_url %}
+{% assign alternate_url = page.alternate_url | default: "/" | absolute_url %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d1a">
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description }}">
+<meta name="google-site-verification" content="e0UbeZf7B4qU2CIjvh71Cyk9bCW309wK1Eplu2JBJEg">
+<link rel="canonical" href="{{ canonical_url }}">
+{% if page.lang == "ru" %}
+<link rel="alternate" hreflang="ru" href="{{ canonical_url }}">
+<link rel="alternate" hreflang="en" href="{{ alternate_url }}">
+<link rel="alternate" hreflang="x-default" href="{{ alternate_url }}">
+{% else %}
+<link rel="alternate" hreflang="en" href="{{ canonical_url }}">
+<link rel="alternate" hreflang="ru" href="{{ alternate_url }}">
+<link rel="alternate" hreflang="x-default" href="{{ canonical_url }}">
+{% endif %}
+<meta property="og:type" content="{{ page.og_type | default: 'website' }}">
+<meta property="og:site_name" content="Pre-Vacuum Research Atlas">
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.description }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ page.title }}">
+<meta name="twitter:description" content="{{ page.description }}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": {{ canonical_url | jsonify }},
+  "inLanguage": {{ page.lang | default: "en" | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": "Pavel Dubov"
+  }
+}
+</script>
