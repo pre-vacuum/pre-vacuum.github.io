@@ -5,13 +5,14 @@
   {% include analytics.html %}
 </head>
 <body>
-  {% include analytics-body.html %}
   {% include header.html %}
   {% include breadcrumbs.html %}
   <main>
     {{ content }}
   </main>
   {% include footer.html %}
+  {% include consent.html %}
+  <script src="/assets/consent.js"></script>
   <script src="/assets/site.js"></script>
 </body>
 </html>
