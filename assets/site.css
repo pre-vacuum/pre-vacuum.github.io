@@ -50,3 +50,31 @@ section{padding:78px 0;border-bottom:1px solid var(--line)}.section-head{max-wid
 .breadcrumbs a:hover{color:var(--cyan)}
 .breadcrumbs .current span:last-child{color:#dbe5f7;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:620px){.breadcrumbs ol{font-size:12px;padding:9px 0}}
+
+
+/* Privacy consent */
+.consent-banner[hidden]{display:none!important}
+.consent-banner{position:fixed;left:20px;right:20px;bottom:20px;z-index:1000;display:flex;justify-content:center;pointer-events:none}
+.consent-card{width:min(980px,100%);background:#0d1629f7;border:1px solid #ffffff24;border-radius:18px;box-shadow:0 20px 70px #000a;backdrop-filter:blur(18px);padding:20px;pointer-events:auto}
+.consent-main{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center}
+.consent-copy strong{font-size:17px}.consent-copy p{margin:6px 0 8px;color:var(--muted);max-width:720px;font-size:14px}
+.consent-links{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted)}
+.consent-links a{color:var(--cyan);text-decoration:none}.consent-links a:hover{text-decoration:underline}
+.consent-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.consent-link-button,.footer-link-button{border:0;background:none;color:var(--cyan);padding:0;font:inherit;cursor:pointer;text-decoration:none}
+.consent-link-button:hover,.footer-link-button:hover{text-decoration:underline;color:#fff}
+.consent-settings{display:grid;gap:12px}
+.consent-setting-row{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.consent-setting-row strong{font-size:14px}.consent-setting-row p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.consent-setting-row input{width:22px;height:22px;accent-color:#86e8ea}
+.consent-always{font-size:11px;font-weight:900;letter-spacing:.08em;color:var(--green)}
+.consent-settings-actions{display:flex;gap:14px;align-items:center;justify-content:flex-end;padding-top:3px}
+.consent-open{padding-bottom:0}
+.footer-link-button{color:var(--muted);font-size:inherit}
+@media(max-width:760px){
+  .consent-banner{left:10px;right:10px;bottom:10px}
+  .consent-card{padding:16px}
+  .consent-main{grid-template-columns:1fr}
+  .consent-actions{justify-content:flex-start}
+  .consent-actions .btn{flex:1 1 auto}
+}
