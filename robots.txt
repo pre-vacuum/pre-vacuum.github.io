@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /fc27-trade/
 Sitemap: https://pre-vacuum.github.io/sitemap.xml
