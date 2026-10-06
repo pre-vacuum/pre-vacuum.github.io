@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>FC27 Trade Assistant</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a2f;--panel2:#18213a;--text:#eef3ff;--muted:#9faecc;--line:#283557;--good:#59d48a;--warn:#f3c95d;--bad:#ff7b7b;--accent:#7aa2ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(145deg,#080c18,#10172b 55%,#0a1124);color:var(--text)}
+button,input,select{font:inherit}.hidden{display:none!important}.wrap{max-width:1180px;margin:auto;padding:24px}.gate{min-height:100vh;display:grid;place-items:center;padding:20px}.gatebox,.card{background:rgba(18,26,47,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 60px #0006}.gatebox{width:min(430px,100%);padding:28px}.gate h1{margin:0 0 8px;font-size:28px}.muted{color:var(--muted)}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}input,select{width:100%;background:#0b1225;color:var(--text);border:1px solid #33436d;border-radius:10px;padding:11px 12px;outline:none}input:focus{border-color:var(--accent)}button{border:0;border-radius:10px;padding:11px 15px;cursor:pointer;background:var(--accent);color:#07101f;font-weight:800}.secondary{background:#202c4c;color:var(--text);border:1px solid #34456f}.danger{background:#4b2330;color:#ffd6dd;border:1px solid #734052}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:20px}.top h1{font-size:26px;margin:0}.badge{display:inline-flex;padding:6px 9px;border-radius:999px;background:#163729;color:#8ee5ae;font-size:12px;font-weight:800;border:1px solid #285d41}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:18px}.metric b{display:block;font-size:26px;margin-top:6px}.section{margin-top:16px;padding:18px}.section h2{margin:0 0 14px;font-size:18px}.formgrid{display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 1fr auto;gap:9px;align-items:end}.field label{display:block;color:var(--muted);font-size:12px;margin:0 0 5px}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:850px}th,td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}th{color:var(--muted);font-weight:700}.good{color:var(--good);font-weight:800}.warn{color:var(--warn);font-weight:800}.bad{color:var(--bad);font-weight:800}.mini{padding:7px 9px;font-size:12px}.notice{margin:16px 0;padding:13px 15px;border-radius:12px;background:#10233a;border:1px solid #264a70;color:#cfe5ff;font-size:13px}.tabs{display:flex;gap:8px;margin-bottom:12px}.tab{background:#17213a;color:var(--muted)}.tab.active{background:var(--accent);color:#07101f}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.footer{color:var(--muted);font-size:12px;padding:18px 0 30px}.error{color:#ff9b9b;font-size:13px;min-height:20px;margin-top:8px}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.formgrid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.wrap{padding:14px}}
+</style>
+</head>
+<body>
+<div id="gate" class="gate">
+  <div class="gatebox">
+    <div class="badge">PRIVATE TOOL</div>
+    <h1>FC27 Trade Assistant</h1>
+    <p class="muted">Локальный помощник: без входа в EA, без запросов к рынку, без автопокупок и автопродаж.</p>
+    <div class="field"><label>Пароль</label><input id="pass" type="password" autocomplete="current-password" placeholder="Введите пароль"></div>
+    <div class="row" style="margin-top:12px"><button id="unlock">Открыть</button></div>
+    <div id="gateErr" class="error"></div>
+    <p class="muted" style="font-size:12px">Защита на GitHub Pages клиентская: она скрывает интерфейс от случайного доступа, но не заменяет серверную авторизацию.</p>
+  </div>
+</div>
+
+<main id="app" class="hidden">
+<div class="wrap">
+  <div class="top">
+    <div><div class="badge">MANUAL-ONLY MODE</div><h1>FC27 Trade Assistant</h1><div class="muted">Расчёт маржи, watchlist и журнал сделок. Все операции в EA подтверждаются вручную.</div></div>
+    <div class="row"><button class="secondary" id="exportBtn">Экспорт JSON</button><button class="secondary" id="importBtn">Импорт</button><button class="secondary" id="lockBtn">Закрыть</button></div>
+  </div>
+
+  <div class="notice"><b>Безопасная архитектура:</b> страница не хранит EA-логин/пароль, не вызывает EA Web App/API, не кликает рынок, не покупает и не выставляет карточки. Данные хранятся только в localStorage этого браузера.</div>
+
+  <section class="grid">
+    <div class="card metric"><span class="muted">Банк</span><b id="bankM">0</b><span class="muted">монет</span></div>
+    <div class="card metric"><span class="muted">Вложено</span><b id="investedM">0</b><span class="muted">монет</span></div>
+    <div class="card metric"><span class="muted">Реализовано</span><b id="profitM">0</b><span class="muted">чистая прибыль</span></div>
+    <div class="card metric"><span class="muted">Потенциал</span><b id="potentialM">0</b><span class="muted">по целям продажи</span></div>
+  </section>
+
+  <section class="card section">
+    <h2>Настройки</h2>
+    <div class="row">
+      <div class="field" style="max-width:220px"><label>Текущий банк</label><input id="bank" type="number" min="0" step="50" value="40000"></div>
+      <div class="field" style="max-width:180px"><label>Налог рынка, %</label><input id="tax" type="number" min="0" max="20" step="0.1" value="5"></div>
+      <button class="secondary" id="saveSettings">Сохранить</button>
+    </div>
+  </section>
+
+  <section class="card section">
+    <div class="tabs"><button class="tab active" data-tab="watch">Watchlist</button><button class="tab" data-tab="journal">Журнал сделок</button></div>
+    <div id="watchPane">
+      <h2>Добавить цель</h2>
+      <div class="formgrid">
+        <div class="field"><label>Игрок / группа</label><input id="wName" placeholder="Напр. Arsenal gold"></div>
+        <div class="field"><label>Клуб / лига</label><input id="wGroup" placeholder="Arsenal / Premier League"></div>
+        <div class="field"><label>Покупать ≤</label><input id="wBuy" type="number" min="0" step="50" value="800"></div>
+        <div class="field"><label>Продавать за</label><input id="wSell" type="number" min="0" step="50" value="1600"></div>
+        <div class="field"><label>Текущая цена</label><input id="wCurrent" type="number" min="0" step="50" placeholder="вручную"></div>
+        <button id="addWatch">Добавить</button>
+      </div>
+      <div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>Цель</th><th>Группа</th><th>Buy ≤</th><th>Sell</th><th>Цена сейчас</th><th>Чистыми/шт.</th><th>ROI</th><th>Сигнал</th><th></th></tr></thead><tbody id="watchBody"></tbody></table></div>
+    </div>
+
+    <div id="journalPane" class="hidden">
+      <h2>Записать сделку</h2>
+      <div class="formgrid">
+        <div class="field"><label>Игрок / группа</label><input id="jName" placeholder="Игрок"></div>
+        <div class="field"><label>Статус</label><select id="jStatus"><option value="open">Куплено / в продаже</option><option value="sold">Продано</option></select></div>
+        <div class="field"><label>Кол-во</label><input id="jQty" type="number" min="1" step="1" value="1"></div>
+        <div class="field"><label>Цена покупки</label><input id="jBuy" type="number" min="0" step="50" value="800"></div>
+        <div class="field"><label>Цена продажи</label><input id="jSell" type="number" min="0" step="50" value="1600"></div>
+        <button id="addTrade">Записать</button>
+      </div>
+      <div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>Дата</th><th>Цель</th><th>Статус</th><th>Кол-во</th><th>Buy</th><th>Sell</th><th>Чистая прибыль</th><th></th></tr></thead><tbody id="journalBody"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="two">
+    <div class="card section"><h2>Калькулятор флипа</h2>
+      <div class="row">
+        <div class="field" style="flex:1"><label>Покупка</label><input id="cBuy" type="number" value="800" step="50"></div>
+        <div class="field" style="flex:1"><label>Продажа</label><input id="cSell" type="number" value="1600" step="50"></div>
+        <div class="field" style="flex:1"><label>Количество</label><input id="cQty" type="number" value="10" min="1"></div>
+      </div>
+      <p id="calcOut" style="font-size:18px;font-weight:800"></p>
+    </div>
+    <div class="card section"><h2>Правило закупки</h2><p class="muted">Не закупать только потому, что цена ниже вчерашней. Фиксируй заранее: максимальный buy, целевой sell, минимальную маржу и лимит монет на одну идею.</p><p id="riskLine"></p></div>
+  </section>
+  <div class="footer">FC27 Trade Assistant · manual-only · данные только в браузере · неофициальный инструмент, не связан с EA.</div>
+</div>
+<input id="fileInput" type="file" accept="application/json" class="hidden">
+</main>
+<script>
+const PASS_HASH="58c147fd551f81e193b8db7e5038c2da3dbd1a547d095b78682432dfab10748b";
+const SKEY="fc27_trade_assistant_v1";
+let state={bank:40000,tax:5,watch:[],trades:[]};
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(Number(n)||0).toLocaleString("ru-RU");
+async function sha256(s){const b=new TextEncoder().encode(s);const h=await crypto.subtle.digest("SHA-256",b);return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+async function unlock(){if(await sha256($("pass").value)===PASS_HASH){sessionStorage.setItem("fc27ok","1");$("gate").classList.add("hidden");$("app").classList.remove("hidden");load();render()}else $("gateErr").textContent="Неверный пароль"}
+$("unlock").onclick=unlock;$("pass").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+$("lockBtn").onclick=()=>{sessionStorage.removeItem("fc27ok");location.reload()};
+function load(){try{const x=JSON.parse(localStorage.getItem(SKEY)||"null");if(x)state={...state,...x}}catch(e){} $("bank").value=state.bank;$("tax").value=state.tax}
+function save(){localStorage.setItem(SKEY,JSON.stringify(state));render()}
+function netPer(buy,sell,tax=state.tax){return Math.round(sell*(1-tax/100)-buy)}
+function roi(buy,sell){return buy?netPer(buy,sell)/buy*100:0}
+function signal(x){const p=Number(x.current||0),b=Number(x.buy||0),s=Number(x.sell||0);if(!p)return ["—",""];if(p<=b)return ["ПОКУПКА","good"];if(p>=s)return ["ПРОДАЖА","warn"];return ["ЖДАТЬ",""]}
+function render(){
+ state.bank=Number(state.bank)||0;state.tax=Number(state.tax)||5;
+ const invested=state.trades.filter(t=>t.status==="open").reduce((a,t)=>a+t.buy*t.qty,0);
+ const realized=state.trades.filter(t=>t.status==="sold").reduce((a,t)=>a+netPer(t.buy,t.sell)*t.qty,0);
+ const potential=state.watch.reduce((a,w)=>a+Math.max(0,netPer(w.buy,w.sell)),0);
+ $("bankM").textContent=fmt(state.bank);$("investedM").textContent=fmt(invested);$("profitM").textContent=fmt(realized);$("potentialM").textContent=fmt(potential);
+ $("watchBody").innerHTML=state.watch.map((w,i)=>{const [sg,cl]=signal(w);return `<tr><td>${esc(w.name)}</td><td>${esc(w.group)}</td><td>${fmt(w.buy)}</td><td>${fmt(w.sell)}</td><td><input data-cur="${i}" type="number" step="50" value="${w.current||""}" style="width:110px"></td><td class="${netPer(w.buy,w.sell)>=0?"good":"bad"}">${fmt(netPer(w.buy,w.sell))}</td><td>${roi(w.buy,w.sell).toFixed(1)}%</td><td class="${cl}">${sg}</td><td><button class="danger mini" data-delw="${i}">×</button></td></tr>`}).join("");
+ $("journalBody").innerHTML=state.trades.map((t,i)=>`<tr><td>${new Date(t.ts).toLocaleString("ru-RU")}</td><td>${esc(t.name)}</td><td>${t.status==="sold"?"Продано":"Открыто"}</td><td>${t.qty}</td><td>${fmt(t.buy)}</td><td>${fmt(t.sell)}</td><td class="${t.status==="sold"?"good":""}">${t.status==="sold"?fmt(netPer(t.buy,t.sell)*t.qty):"—"}</td><td><button class="danger mini" data-delt="${i}">×</button></td></tr>`).join("");
+ document.querySelectorAll("[data-cur]").forEach(x=>x.onchange=()=>{state.watch[+x.dataset.cur].current=+x.value;save()});
+ document.querySelectorAll("[data-delw]").forEach(x=>x.onclick=()=>{state.watch.splice(+x.dataset.delw,1);save()});
+ document.querySelectorAll("[data-delt]").forEach(x=>x.onclick=()=>{state.trades.splice(+x.dataset.delt,1);save()});
+ calc();
+ const exposure=state.bank?invested/state.bank*100:0;$("riskLine").innerHTML=exposure>50?'<span class="bad">Высокая доля банка в открытых позициях: '+exposure.toFixed(0)+'%</span>':'<span class="good">Открытые позиции: '+exposure.toFixed(0)+'% банка</span>';
+}
+function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+$("saveSettings").onclick=()=>{state.bank=+$("bank").value;state.tax=+$("tax").value;save()};
+$("addWatch").onclick=()=>{const name=$("wName").value.trim();if(!name)return;state.watch.push({name,group:$("wGroup").value.trim(),buy:+$("wBuy").value,sell:+$("wSell").value,current:+$("wCurrent").value||0});$("wName").value="";$("wCurrent").value="";save()};
+$("addTrade").onclick=()=>{const name=$("jName").value.trim();if(!name)return;state.trades.unshift({ts:Date.now(),name,status:$("jStatus").value,qty:+$("jQty").value||1,buy:+$("jBuy").value||0,sell:+$("jSell").value||0});$("jName").value="";save()};
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");$("watchPane").classList.toggle("hidden",b.dataset.tab!=="watch");$("journalPane").classList.toggle("hidden",b.dataset.tab!=="journal")});
+function calc(){const b=+$("cBuy").value||0,s=+$("cSell").value||0,q=+$("cQty").value||1,p=netPer(b,s)*q;$("calcOut").innerHTML=`Чистыми: <span class="${p>=0?"good":"bad"}">${fmt(p)} монет</span> · ${roi(b,s).toFixed(1)}% ROI`}
+["cBuy","cSell","cQty"].forEach(id=>$(id).oninput=calc);
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="fc27-trades.json";a.click();URL.revokeObjectURL(a.href)};
+$("importBtn").onclick=()=>$("fileInput").click();$("fileInput").onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());state={...state,...x};save()}catch(err){alert("Не удалось импортировать JSON")}};
+if(sessionStorage.getItem("fc27ok")==="1"){$("gate").classList.add("hidden");$("app").classList.remove("hidden");load();render()}
+</script>
+</body>
+</html>
