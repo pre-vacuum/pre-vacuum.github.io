@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VTV2 · закрытый рабочий стол индекса</title>
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet"><meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="login" class="login-screen">
+  <div class="login-card">
+    <div class="mark">◈ <span>VTV2 / ЛАБОРАТОРИЯ</span></div>
+    <div class="login-kicker">Панель полнотекстового индекса</div>
+    <h1>Научный граф.<br><em>Контроль без подгонки.</em></h1>
+    <p>Зашифрованный рабочий стол источников, SHA, поиска и исследовательских связей. Исходные записи не объявляются проверенными по одному манифесту.</p>
+    <form id="loginForm"><label for="password">Пароль хранилища</label><div class="password-row"><input type="password" id="password" autocomplete="current-password" required placeholder="Введите пароль"><button type="submit" id="unlockBtn">Открыть →</button></div></form>
+    <p class="error" id="loginError" role="alert"></p>
+    <div class="security"><span class="dot amber"></span><span>GitHub Pages не имеет серверной защиты. Данные зашифрованы в браузере, но слабый пароль допускает офлайн-подбор. Не используйте эту панель как хранилище секретов.</span></div>
+    <div class="login-foot">VTV-COMPACTNESS · snapshot 2026-11-16 · без Actions и фоновых запусков</div>
+  </div>
+</div>
+<div id="workspace" hidden>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">◈</span><div><b>VTV2</b><small>RESEARCH CONTROL</small></div></div>
+    <div class="side-label">РАБОЧИЙ СТОЛ</div>
+    <nav id="nav" aria-label="Разделы">
+      <button type="button" data-tab="overview" class="nav-item active"><span>◫</span> Обзор</button>
+      <button type="button" data-tab="sources" class="nav-item"><span>▦</span> 1 210 исходников <b class="count" id="navSources">1210</b></button>
+      <button type="button" data-tab="commits" class="nav-item"><span>⑂</span> Коммиты GitHub</button>
+      <button type="button" data-tab="manifests" class="nav-item"><span>▤</span> Манифесты и версии</button>
+      <button type="button" data-tab="search" class="nav-item"><span>⌕</span> Поисковик и тесты</button>
+      <button type="button" data-tab="graph" class="nav-item"><span>⌁</span> Граф и связи</button>
+      <button type="button" data-tab="queue" class="nav-item"><span>↻</span> Очередь индексации <b class="count" id="navQueue">0</b></button>
+      <button type="button" data-tab="session" class="nav-item"><span>▣</span> Сессия и отчет</button>
+    </nav>
+    <div class="side-bottom"><div class="signal"><span class="dot amber"></span><div><b>Рабочий снимок</b><small>Не прямой доступ к GitHub</small></div></div><button type="button" class="lock" id="lockBtn">⏻ Закрыть доступ</button></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow" id="crumb">МОНИТОРИНГ / ОБЗОР</div><h2 id="pageTitle">Состояние индекса VTV2</h2></div><div class="header-actions"><span class="badge-outline" id="headBadge">SHA-SCOPED · SNAPSHOT</span><button type="button" id="saveShortcut" class="btn small ghost">◧ Точка остановки</button></div></header>
+    <div class="content" id="content"></div>
+    <footer class="footer"><div>Один исходник — один SHA · Извлеченный текст обязателен · PASS / FAIL / OPEN</div><div id="statusFoot">Данные снимка загружены</div></footer>
+  </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="./app.js" defer></script>
+</body>
+</html>
